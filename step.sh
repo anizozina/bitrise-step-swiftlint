@@ -61,7 +61,7 @@ case $lint_range in
     for swift_file in $(git diff HEAD^ --name-only -- '*.swift')
     do 
       echo "command swiftlint lint --path \"$swift_file\" --reporter ${reporter} \"${FLAGS}\""
-      swiftlint_output+=$"$(swiftlint lint --path "$swift_file" --reporter ${reporter} "${FLAGS}")"
+      swiftlint_output+=$"$(swiftlint lint --path $BITRISE_SOURCE_DIR/"$swift_file" --reporter ${reporter} "${FLAGS}")"
     done
     ;;
   
