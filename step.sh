@@ -49,6 +49,8 @@ esac
 
 report_path="${BITRISE_DEPLOY_DIR}/${filename}"
 
+pwd
+
 case $lint_range in 
   "changed")
   echo "Linting diff only"
@@ -58,6 +60,7 @@ case $lint_range in
 
     for swift_file in $(git diff HEAD^ --name-only -- '*.swift')
     do 
+      echo "command swiftlint lint --path \"$swift_file\" --reporter ${reporter} \"${FLAGS}\""
       swiftlint_output+=$"$(swiftlint lint --path "$swift_file" --reporter ${reporter} "${FLAGS}")"
     done
     ;;
